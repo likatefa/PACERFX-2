@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Alchemist — Private Access</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0a0b;
+    --bg-raised:#131315;
+    --ink:#e9e5dd;
+    --ink-dim:#a8a39a;
+    --steel:#8b9096;
+    --blood:#7d2323;
+    --blood-bright:#a63131;
+    --line: rgba(233,229,221,0.14);
+    --serif: 'Fraunces', serif;
+    --sans: 'IBM Plex Sans', sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    box-sizing: border-box;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-padding-top: env(safe-area-inset-top, 0px); scroll-behavior:smooth;}
+  html,body{height:100%;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-weight:300;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--blood); color:#fff;}
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:720px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:92vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    overflow:hidden;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-bg{
+    position:absolute; inset:0;
+    background:
+      radial-gradient(120% 90% at 15% 0%, #1c1c1e 0%, #0a0a0b 55%),
+      linear-gradient(180deg, #0a0a0b 0%, #0a0a0b 100%);
+  }
+  .hero-scene{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+  }
+  .hero-content{
+    position:relative;
+    z-index:2;
+    padding: 120px 24px 64px;
+  }
+  .kicker{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:0.14em;
+    color:var(--steel);
+    margin:0 0 18px;
+  }
+  .kicker::before{
+    content:"";
+    display:inline-block;
+    width:7px; height:7px;
+    border-radius:50%;
+    background:var(--blood-bright);
+    margin-right:10px;
+    vertical-align:middle;
+    box-shadow:0 0 8px var(--blood-bright);
+  }
+  h1.wordmark{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:clamp(52px, 15vw, 96px);
+    letter-spacing:0.01em;
+    line-height:0.95;
+    margin:0 0 20px;
+    background:linear-gradient(180deg,#f4f1ea 0%, #c9c4ba 45%, #7d7973 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .hero-sub{
+    max-width:46ch;
+    font-size:17px;
+    color:var(--ink-dim);
+    font-style:italic;
+    font-family:var(--serif);
+    font-weight:400;
+    margin:0;
+  }
+  .hero-line{
+    width:100%; height:1px;
+    background:linear-gradient(90deg, var(--line), transparent);
+    margin-top:48px;
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section{
+    padding:72px 0;
+    border-bottom:1px solid var(--line);
+  }
+  section:last-of-type{ border-bottom:none; }
+
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--ink-dim);
+    letter-spacing:0.06em;
+    margin:0 0 12px;
+  }
+  h2{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:clamp(28px, 5vw, 38px);
+    margin:0 0 28px;
+    max-width:18ch;
+  }
+  p.lede{
+    font-size:16px;
+    color:var(--ink-dim);
+    max-width:60ch;
+    margin:0 0 8px;
+  }
+
+  /* philosophy */
+  .principles{
+    margin-top:36px;
+    display:flex;
+    flex-direction:column;
+  }
+  .principle{
+    display:grid;
+    grid-template-columns: 64px 1fr;
+    gap:20px;
+    padding:24px 0;
+    border-top:1px solid var(--line);
+  }
+  .principle:last-child{border-bottom:1px solid var(--line);}
+  .principle .mark{
+    font-family:var(--serif);
+    font-style:italic;
+    font-size:15px;
+    color:var(--steel);
+    padding-top:2px;
+  }
+  .principle h3{
+    font-family:var(--sans);
+    font-weight:500;
+    font-size:16px;
+    margin:0 0 6px;
+    color:var(--ink);
+  }
+  .principle p{
+    margin:0;
+    font-size:14.5px;
+    color:var(--ink-dim);
+    max-width:52ch;
+  }
+
+  /* framework list */
+  .framework-item{
+    padding:26px 0;
+    border-top:1px solid var(--line);
+    display:grid;
+    grid-template-columns: 1fr;
+    gap:6px;
+  }
+  .framework-item:last-child{border-bottom:1px solid var(--line);}
+  .framework-item .tag{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--blood-bright);
+    letter-spacing:0.08em;
+  }
+  .framework-item h3{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:20px;
+    margin:2px 0 6px;
+  }
+  .framework-item p{
+    margin:0;
+    font-size:14.5px;
+    color:var(--ink-dim);
+    max-width:56ch;
+  }
+
+  /* sessions strip */
+  .sessions{
+    marg
